@@ -1,0 +1,125 @@
+﻿== auth.rs (status 200 ) ==
+auth.rs - sourceif(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>``).join(""))
+
+
+
+(function() {
+    function applyTheme(theme) {
+        if (theme) {
+            document.documentElement.dataset.docsRsTheme = theme;
+        }
+    }
+
+    window.addEventListener("storage", ev => {
+        if (ev.key === "rustdoc-theme") {
+            applyTheme(ev.newValue);
+        }
+    });
+
+    // see ./storage-change-detection.html for details
+    window.addEventListener("message", ev => {
+        if (ev.data && ev.data.storage && ev.data.storage.key === "rustdoc-theme") {
+            applyTheme(ev.data.storage.value);
+        }
+    });
+
+    applyTheme(window.localStorage.getItem("rustdoc-theme"));
+})();
+
+    
+        
+            
+
+                
+                
+                    
+                    Docs.rs
+                
+    
+        
+        {
+            "name": "fyers-rs",
+            "version": "0.0.1"
+        }
+    
+            
+                
+                fyers-rs-0.0.1
+            
+                
+                
+                    
+                        fyers-rs 0.0.1
+                        
+                    
+                         Permalink
+                        
+                    
+                        
+                             Docs.rs crate page
+                        
+                    
+                            
+                            Apache-2.0
+                        
+                            
+                                 11 July 2026
+                            
+                        
+
+                
+                    
+                        
+                            Links
+
+                            
+                                    
+                                         Repository
+                                    
+                                
+                                
+                                     crates.io
+                                
+                            
+
+                            
+                            
+                                
+                                     Source
+                                
+                            
+                        
+                    
+                        
+                            
+== api pages ==
+../fyers_rs/index.html
+all.html
+auth/index.html
+client/index.html
+client/struct.FyersClient.html
+client/struct.FyersClientBuilder.html
+config/index.html
+config/struct.FyersConfig.html
+config/struct.SecretString.html
+error/enum.FyersError.html
+error/index.html
+error/type.Result.html
+models/index.html
+rest/alerts/index.html
+rest/edis/index.html
+rest/funds/index.html
+rest/gtt/index.html
+rest/holdings/index.html
+rest/index.html
+rest/market_data/index.html
+rest/orders/index.html
+rest/positions/index.html
+rest/profile/index.html
+rest/reports/index.html
+rest/smart_orders/index.html
+rest/trades/index.html
+transport/index.html
+ws/data/struct.DataSocketConnection.html
+ws/data_protocol/index.html
+ws/index.html

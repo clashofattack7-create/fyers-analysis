@@ -1,0 +1,29 @@
+﻿URI: https://trade.fyers.in/api-login/redirect-uri/index.html
+  status 200 | loc: 
+  body: <!doctype html> <html>  <head>     <meta charset="UTF-8">     <meta content="width=device-width, initial-scale=1.0" name="viewport">     <meta http-equiv="cache-control" content="max-age=0" />     <meta http-equiv="cache
+URI: https://127.0.0.1:5000/
+  status 200 | loc: 
+  body: <!doctype html> <html>  <head>     <meta charset="UTF-8">     <meta content="width=device-width, initial-scale=1.0" name="viewport">     <meta http-equiv="cache-control" content="max-age=0" />     <meta http-equiv="cache
+URI: http://127.0.0.1:5000/
+  status 200 | loc: 
+  body: <!doctype html> <html>  <head>     <meta charset="UTF-8">     <meta content="width=device-width, initial-scale=1.0" name="viewport">     <meta http-equiv="cache-control" content="max-age=0" />     <meta http-equiv="cache
+URI: https://localhost/
+  status 200 | loc: 
+  body: <!doctype html> <html>  <head>     <meta charset="UTF-8">     <meta content="width=device-width, initial-scale=1.0" name="viewport">     <meta http-equiv="cache-control" content="max-age=0" />     <meta http-equiv="cache
+URI: https://localhost:5000/
+  status 200 | loc: 
+  body: <!doctype html> <html>  <head>     <meta charset="UTF-8">     <meta content="width=device-width, initial-scale=1.0" name="viewport">     <meta http-equiv="cache-control" content="max-age=0" />     <meta http-equiv="cache
+URI: https://myfyers.in/api-login/redirect-uri/index.html
+  status 429 | loc: 
+  body: <!doctype html> <!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en-US"> <![endif]--> <!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en-US"> <![endif]--> <!--[if IE 8]>    <html class="no-js ie8 oldie" lang="
+URI: https://fyers.in/
+  status 429 | loc: 
+  body: <!doctype html> <!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en-US"> <![endif]--> <!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en-US"> <![endif]--> <!--[if IE 8]>    <html class="no-js ie8 oldie" lang="
+URI: https://www.fyers.in/
+  status 429 | loc: 
+  body: <!doctype html> <!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en-US"> <![endif]--> <!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en-US"> <![endif]--> <!--[if IE 8]>    <html class="no-js ie8 oldie" lang="
+URI: https://login.fyers.in/api-login/redirect-uri/index.html
+  status 429 | loc: 
+  body: <!doctype html> <!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en-US"> <![endif]--> <!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en-US"> <![endif]--> <!--[if IE 8]>    <html class="no-js ie8 oldie" lang="
+---
+validate-authcode: 400 {"code":-437,"message":"invalid auth code","s":"error"}

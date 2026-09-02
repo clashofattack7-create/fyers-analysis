@@ -1,0 +1,622 @@
+﻿### appIdHash @ 9481
+ented validate-authcode endpoint.
+40#[derive(Clone, PartialEq, Eq, Serialize, Deserialize)]
+41pub struct ValidateAuthCodeRequest {
+42    /// Grant type. Fyers documents this as `authorization_code`.
+43    pub grant_type: String,
+44    /// SHA-256 hash of `app_id:app_secret`.
+45    #[serde(rename = "appIdHash")]
+46    pub app_id_hash: String,
+47    /// Auth code returned by the login redirect.
+48    pub code: String,
+49}
+50
+51impl ValidateAuthCodeRequest {
+52    /// Create a validate-authcode request with the documented grant type.
+53    pub fn new(app_id_hash: impl Into<String>, code: impl Into<String>) -> Self {
+54        Self {
+55            grant_type: AUTHORIZATION_CODE_GRANT.to_owned(),
+56            app_id_hash: app_id_hash.into(),
+57            code: code.into(),
+58        }
+59    }
+----
+### appIdHash @ 10669
+ocumented validate-refresh-token endpoint.
+73#[derive(Clone, PartialEq, Eq, Serialize, Deserialize)]
+74pub struct RefreshTokenRequest {
+75    /// Grant type. Fyers documents this as `refresh_token`.
+76    pub grant_type: String,
+77    /// SHA-256 hash of `app_id:app_secret`.
+78    #[serde(rename = "appIdHash")]
+79    pub app_id_hash: String,
+80    /// Refresh token returned by auth-code validation.
+81    pub refresh_token: String,
+82    /// Fyers PIN used by the refresh-token flow.
+83    pub pin: String,
+84}
+85
+86impl RefreshTokenRequest {
+87    /// Create a refresh-token request with the documented grant type.
+88    pub fn new(
+89        app_id_hash: impl Into<String>,
+90        refresh_token: impl Into<String>,
+91        pin: impl Into<String>,
+92    ) -> Self {
+93        Self {
+94      
+----
+### refresh @ 8241
+ze};
+6use url::Url;
+7
+8/// Documented OAuth response type for Fyers auth-code generation.
+9pub const AUTH_CODE_RESPONSE_TYPE: &str = "code";
+10
+11/// Documented grant type for auth-code validation.
+12pub const AUTHORIZATION_CODE_GRANT: &str = "authorization_code";
+13
+14/// Documented grant type for refresh-token validation.
+15pub const REFRESH_TOKEN_GRANT: &str = "refresh_token";
+16
+17/// Request parameters used to build the documented auth-code login URL.
+18#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+19pub struct GenerateAuthCodeRequest {
+20    /// Redirect URI registered for the Fyers app.
+21    pub redirect_uri: Url,
+22    /// OAuth response type. Fyers documents this as always `code`.
+23    pub response_type: String,
+24    /// Caller-provided state value returned by 
+----
+### refresh @ 8308
+ auth-code generation.
+9pub const AUTH_CODE_RESPONSE_TYPE: &str = "code";
+10
+11/// Documented grant type for auth-code validation.
+12pub const AUTHORIZATION_CODE_GRANT: &str = "authorization_code";
+13
+14/// Documented grant type for refresh-token validation.
+15pub const REFRESH_TOKEN_GRANT: &str = "refresh_token";
+16
+17/// Request parameters used to build the documented auth-code login URL.
+18#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+19pub struct GenerateAuthCodeRequest {
+20    /// Redirect URI registered for the Fyers app.
+21    pub redirect_uri: Url,
+22    /// OAuth response type. Fyers documents this as always `code`.
+23    pub response_type: String,
+24    /// Caller-provided state value returned by the login redirect.
+25    pub state: String,
+26}
+27
+28impl Generate
+----
+### refresh @ 10388
+fmt::Result {
+64        f.debug_struct("ValidateAuthCodeRequest")
+65            .field("grant_type", &self.grant_type)
+66            .field("app_id_hash", &"[redacted]")
+67            .field("code", &"[redacted]")
+68            .finish()
+69    }
+70}
+71
+72/// Request body for the documented validate-refresh-token endpoint.
+73#[derive(Clone, PartialEq, Eq, Serialize, Deserialize)]
+74pub struct RefreshTokenRequest {
+75    /// Grant type. Fyers documents this as `refresh_token`.
+76    pub grant_type: String,
+77    /// SHA-256 hash of `app_id:app_secret`.
+78    #[serde(rename = "appIdHash")]
+79    pub app_id_hash: String,
+80    /// Refresh token returned by auth-code validation.
+81    pub refresh_token: String,
+82    /// Fyers PIN used by the refresh-token flow.
+83    pub pin: String,
+84}
+85
+86
+----
+### refresh @ 10552
+ed]")
+67            .field("code", &"[redacted]")
+68            .finish()
+69    }
+70}
+71
+72/// Request body for the documented validate-refresh-token endpoint.
+73#[derive(Clone, PartialEq, Eq, Serialize, Deserialize)]
+74pub struct RefreshTokenRequest {
+75    /// Grant type. Fyers documents this as `refresh_token`.
+76    pub grant_type: String,
+77    /// SHA-256 hash of `app_id:app_secret`.
+78    #[serde(rename = "appIdHash")]
+79    pub app_id_hash: String,
+80    /// Refresh token returned by auth-code validation.
+81    pub refresh_token: String,
+82    /// Fyers PIN used by the refresh-token flow.
+83    pub pin: String,
+84}
+85
+86impl RefreshTokenRequest {
+87    /// Create a refresh-token request with the documented grant type.
+88    pub fn new(
+89        app_id_hash: impl Into<String>,
+90  
+----
+### refresh @ 10781
+t RefreshTokenRequest {
+75    /// Grant type. Fyers documents this as `refresh_token`.
+76    pub grant_type: String,
+77    /// SHA-256 hash of `app_id:app_secret`.
+78    #[serde(rename = "appIdHash")]
+79    pub app_id_hash: String,
+80    /// Refresh token returned by auth-code validation.
+81    pub refresh_token: String,
+82    /// Fyers PIN used by the refresh-token flow.
+83    pub pin: String,
+84}
+85
+86impl RefreshTokenRequest {
+87    /// Create a refresh-token request with the documented grant type.
+88    pub fn new(
+89        app_id_hash: impl Into<String>,
+90        refresh_token: impl Into<String>,
+91        pin: impl Into<String>,
+92    ) -> Self {
+93        Self {
+94            grant_type: REFRESH_TOKEN_GRANT.to_owned(),
+95            app_id_hash: app_id_hash.into(),
+96            r
+----
+### refresh @ 10836
+uments this as `refresh_token`.
+76    pub grant_type: String,
+77    /// SHA-256 hash of `app_id:app_secret`.
+78    #[serde(rename = "appIdHash")]
+79    pub app_id_hash: String,
+80    /// Refresh token returned by auth-code validation.
+81    pub refresh_token: String,
+82    /// Fyers PIN used by the refresh-token flow.
+83    pub pin: String,
+84}
+85
+86impl RefreshTokenRequest {
+87    /// Create a refresh-token request with the documented grant type.
+88    pub fn new(
+89        app_id_hash: impl Into<String>,
+90        refresh_token: impl Into<String>,
+91        pin: impl Into<String>,
+92    ) -> Self {
+93        Self {
+94            grant_type: REFRESH_TOKEN_GRANT.to_owned(),
+95            app_id_hash: app_id_hash.into(),
+96            refresh_token: refresh_token.into(),
+97            pin: 
+----
+### refresh @ 10934
+p_secret`.
+78    #[serde(rename = "appIdHash")]
+79    pub app_id_hash: String,
+80    /// Refresh token returned by auth-code validation.
+81    pub refresh_token: String,
+82    /// Fyers PIN used by the refresh-token flow.
+83    pub pin: String,
+84}
+85
+86impl RefreshTokenRequest {
+87    /// Create a refresh-token request with the documented grant type.
+88    pub fn new(
+89        app_id_hash: impl Into<String>,
+90        refresh_token: impl Into<String>,
+91        pin: impl Into<String>,
+92    ) -> Self {
+93        Self {
+94            grant_type: REFRESH_TOKEN_GRANT.to_owned(),
+95            app_id_hash: app_id_hash.into(),
+96            refresh_token: refresh_token.into(),
+97            pin: pin.into(),
+98        }
+99    }
+100}
+101
+102impl fmt::Debug for RefreshTokenRequest {
+103    fn fm
+----
+### refresh @ 11058
+ validation.
+81    pub refresh_token: String,
+82    /// Fyers PIN used by the refresh-token flow.
+83    pub pin: String,
+84}
+85
+86impl RefreshTokenRequest {
+87    /// Create a refresh-token request with the documented grant type.
+88    pub fn new(
+89        app_id_hash: impl Into<String>,
+90        refresh_token: impl Into<String>,
+91        pin: impl Into<String>,
+92    ) -> Self {
+93        Self {
+94            grant_type: REFRESH_TOKEN_GRANT.to_owned(),
+95            app_id_hash: app_id_hash.into(),
+96            refresh_token: refresh_token.into(),
+97            pin: pin.into(),
+98        }
+99    }
+100}
+101
+102impl fmt::Debug for RefreshTokenRequest {
+103    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+104        f.debug_struct("RefreshTokenRequest")
+105            .field
+----
+### refresh @ 11280
+t type.
+88    pub fn new(
+89        app_id_hash: impl Into<String>,
+90        refresh_token: impl Into<String>,
+91        pin: impl Into<String>,
+92    ) -> Self {
+93        Self {
+94            grant_type: REFRESH_TOKEN_GRANT.to_owned(),
+95            app_id_hash: app_id_hash.into(),
+96            refresh_token: refresh_token.into(),
+97            pin: pin.into(),
+98        }
+99    }
+100}
+101
+102impl fmt::Debug for RefreshTokenRequest {
+103    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+104        f.debug_struct("RefreshTokenRequest")
+105            .field("grant_type", &self.grant_type)
+106            .field("app_id_hash", &"[redacted]")
+107            .field("refresh_token", &"[redacted]")
+108            .field("pin", &"[redacted]")
+109            .finish()
+110    }
+111}
+
+----
+### refresh @ 11295
+ub fn new(
+89        app_id_hash: impl Into<String>,
+90        refresh_token: impl Into<String>,
+91        pin: impl Into<String>,
+92    ) -> Self {
+93        Self {
+94            grant_type: REFRESH_TOKEN_GRANT.to_owned(),
+95            app_id_hash: app_id_hash.into(),
+96            refresh_token: refresh_token.into(),
+97            pin: pin.into(),
+98        }
+99    }
+100}
+101
+102impl fmt::Debug for RefreshTokenRequest {
+103    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+104        f.debug_struct("RefreshTokenRequest")
+105            .field("grant_type", &self.grant_type)
+106            .field("app_id_hash", &"[redacted]")
+107            .field("refresh_token", &"[redacted]")
+108            .field("pin", &"[redacted]")
+109            .finish()
+110    }
+111}
+112
+113/// Resp
+----
+### refresh @ 11666
+}
+100}
+101
+102impl fmt::Debug for RefreshTokenRequest {
+103    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+104        f.debug_struct("RefreshTokenRequest")
+105            .field("grant_type", &self.grant_type)
+106            .field("app_id_hash", &"[redacted]")
+107            .field("refresh_token", &"[redacted]")
+108            .field("pin", &"[redacted]")
+109            .finish()
+110    }
+111}
+112
+113/// Response returned by documented access-token generation APIs.
+114#[derive(Clone, PartialEq, Eq, Serialize, Deserialize)]
+115pub struct AccessTokenResponse {
+116    /// Broker-specific numeric code.
+117    pub code: i64,
+118    /// Broker status string.
+119    pub s: String,
+120    /// Human-readable message.
+121    pub message: String,
+122    /// Access token returned by t
+----
+### refresh @ 12340
+ng.
+119    pub s: String,
+120    /// Human-readable message.
+121    pub message: String,
+122    /// Access token returned by the broker.
+123    #[serde(default)]
+124    pub access_token: Option<String>,
+125    /// Refresh token returned by the broker, if present.
+126    #[serde(default)]
+127    pub refresh_token: Option<String>,
+128}
+129
+130impl fmt::Debug for AccessTokenResponse {
+131    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+132        f.debug_struct("AccessTokenResponse")
+133            .field("code", &self.code)
+134            .field("s", &self.s)
+135            .field("message", &self.message)
+136            .field(
+137                "access_token",
+138                &self.access_token.as_ref().map(|_| "[redacted]"),
+139            )
+140            .field(
+141   
+----
+### refresh @ 12854
+ .field("code", &self.code)
+134            .field("s", &self.s)
+135            .field("message", &self.message)
+136            .field(
+137                "access_token",
+138                &self.access_token.as_ref().map(|_| "[redacted]"),
+139            )
+140            .field(
+141                "refresh_token",
+142                &self.refresh_token.as_ref().map(|_| "[redacted]"),
+143            )
+144            .finish()
+145    }
+146}
+
+----
+### refresh @ 12895
+  .field("s", &self.s)
+135            .field("message", &self.message)
+136            .field(
+137                "access_token",
+138                &self.access_token.as_ref().map(|_| "[redacted]"),
+139            )
+140            .field(
+141                "refresh_token",
+142                &self.refresh_token.as_ref().map(|_| "[redacted]"),
+143            )
+144            .finish()
+145    }
+146}
+
+----
+### AUTH @ 8042
+ontentThis old browser is unsupported and will most likely display funky things.Filesfyers_rs/models/auth.rs1//! Auth request and response models.
+2
+3use std::fmt;
+4
+5use serde::{Deserialize, Serialize};
+6use url::Url;
+7
+8/// Documented OAuth response type for Fyers auth-code generation.
+9pub const AUTH_CODE_RESPONSE_TYPE: &str = "code";
+10
+11/// Documented grant type for auth-code validation.
+12pub const AUTHORIZATION_CODE_GRANT: &str = "authorization_code";
+13
+14/// Documented grant type for refresh-token validation.
+15pub const REFRESH_TOKEN_GRANT: &str = "refresh_token";
+16
+17/// Request parameters used to build the documented auth-code login URL.
+18#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+19pub struct GenerateAuthCodeRequest {
+20    /// Redirect URI registered fo
+----
+### AUTH @ 8151
+//! Auth request and response models.
+2
+3use std::fmt;
+4
+5use serde::{Deserialize, Serialize};
+6use url::Url;
+7
+8/// Documented OAuth response type for Fyers auth-code generation.
+9pub const AUTH_CODE_RESPONSE_TYPE: &str = "code";
+10
+11/// Documented grant type for auth-code validation.
+12pub const AUTHORIZATION_CODE_GRANT: &str = "authorization_code";
+13
+14/// Documented grant type for refresh-token validation.
+15pub const REFRESH_TOKEN_GRANT: &str = "refresh_token";
+16
+17/// Request parameters used to build the documented auth-code login URL.
+18#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+19pub struct GenerateAuthCodeRequest {
+20    /// Redirect URI registered for the Fyers app.
+21    pub redirect_uri: Url,
+22    /// OAuth response type. Fyers documents this as always `
+----
+### AUTH @ 9051
+redirect.
+25    pub state: String,
+26}
+27
+28impl GenerateAuthCodeRequest {
+29    /// Create a login URL request with the documented `code` response type.
+30    pub fn new(redirect_uri: Url, state: impl Into<String>) -> Self {
+31        Self {
+32            redirect_uri,
+33            response_type: AUTH_CODE_RESPONSE_TYPE.to_owned(),
+34            state: state.into(),
+35        }
+36    }
+37}
+38
+39/// Request body for the documented validate-authcode endpoint.
+40#[derive(Clone, PartialEq, Eq, Serialize, Deserialize)]
+41pub struct ValidateAuthCodeRequest {
+42    /// Grant type. Fyers documents this as `authorization_code`.
+43    pub grant_type: String,
+44    /// SHA-256 hash of `app_id:app_secret`.
+45    #[serde(rename = "appIdHash")]
+46    pub app_id_hash: String,
+47    /// Auth code return
+----
+### AUTH @ 9845
+returned by the login redirect.
+48    pub code: String,
+49}
+50
+51impl ValidateAuthCodeRequest {
+52    /// Create a validate-authcode request with the documented grant type.
+53    pub fn new(app_id_hash: impl Into<String>, code: impl Into<String>) -> Self {
+54        Self {
+55            grant_type: AUTHORIZATION_CODE_GRANT.to_owned(),
+56            app_id_hash: app_id_hash.into(),
+57            code: code.into(),
+58        }
+59    }
+60}
+61
+62impl fmt::Debug for ValidateAuthCodeRequest {
+63    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+64        f.debug_struct("ValidateAuthCodeRequest")
+65            .field("grant_type", &self.grant_type)
+66            .field("app_id_hash", &"[redacted]")
+67            .field("code", &"[redacted]")
+68            .finish()
+69    }
+70}
+71
+72//
+----
+### authcode @ 9196
+se type.
+30    pub fn new(redirect_uri: Url, state: impl Into<String>) -> Self {
+31        Self {
+32            redirect_uri,
+33            response_type: AUTH_CODE_RESPONSE_TYPE.to_owned(),
+34            state: state.into(),
+35        }
+36    }
+37}
+38
+39/// Request body for the documented validate-authcode endpoint.
+40#[derive(Clone, PartialEq, Eq, Serialize, Deserialize)]
+41pub struct ValidateAuthCodeRequest {
+42    /// Grant type. Fyers documents this as `authorization_code`.
+43    pub grant_type: String,
+44    /// SHA-256 hash of `app_id:app_secret`.
+45    #[serde(rename = "appIdHash")]
+46    pub app_id_hash: String,
+47    /// Auth code returned by the login redirect.
+48    pub code: String,
+49}
+50
+51impl ValidateAuthCodeRequest {
+52    /// Create a validate-authcode request with the d
+----
+### authcode @ 9669
+ion_code`.
+43    pub grant_type: String,
+44    /// SHA-256 hash of `app_id:app_secret`.
+45    #[serde(rename = "appIdHash")]
+46    pub app_id_hash: String,
+47    /// Auth code returned by the login redirect.
+48    pub code: String,
+49}
+50
+51impl ValidateAuthCodeRequest {
+52    /// Create a validate-authcode request with the documented grant type.
+53    pub fn new(app_id_hash: impl Into<String>, code: impl Into<String>) -> Self {
+54        Self {
+55            grant_type: AUTHORIZATION_CODE_GRANT.to_owned(),
+56            app_id_hash: app_id_hash.into(),
+57            code: code.into(),
+58        }
+59    }
+60}
+61
+62impl fmt::Debug for ValidateAuthCodeRequest {
+63    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+64        f.debug_struct("ValidateAuthCodeRequest")
+65            .
+----
+### validate @ 9187
+e` response type.
+30    pub fn new(redirect_uri: Url, state: impl Into<String>) -> Self {
+31        Self {
+32            redirect_uri,
+33            response_type: AUTH_CODE_RESPONSE_TYPE.to_owned(),
+34            state: state.into(),
+35        }
+36    }
+37}
+38
+39/// Request body for the documented validate-authcode endpoint.
+40#[derive(Clone, PartialEq, Eq, Serialize, Deserialize)]
+41pub struct ValidateAuthCodeRequest {
+42    /// Grant type. Fyers documents this as `authorization_code`.
+43    pub grant_type: String,
+44    /// SHA-256 hash of `app_id:app_secret`.
+45    #[serde(rename = "appIdHash")]
+46    pub app_id_hash: String,
+47    /// Auth code returned by the login redirect.
+48    pub code: String,
+49}
+50
+51impl ValidateAuthCodeRequest {
+52    /// Create a validate-authcode request w
+----
+### validate @ 9660
+uthorization_code`.
+43    pub grant_type: String,
+44    /// SHA-256 hash of `app_id:app_secret`.
+45    #[serde(rename = "appIdHash")]
+46    pub app_id_hash: String,
+47    /// Auth code returned by the login redirect.
+48    pub code: String,
+49}
+50
+51impl ValidateAuthCodeRequest {
+52    /// Create a validate-authcode request with the documented grant type.
+53    pub fn new(app_id_hash: impl Into<String>, code: impl Into<String>) -> Self {
+54        Self {
+55            grant_type: AUTHORIZATION_CODE_GRANT.to_owned(),
+56            app_id_hash: app_id_hash.into(),
+57            code: code.into(),
+58        }
+59    }
+60}
+61
+62impl fmt::Debug for ValidateAuthCodeRequest {
+63    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+64        f.debug_struct("ValidateAuthCodeRequest")
+65    
+----
+### validate @ 10379
+<'_>) -> fmt::Result {
+64        f.debug_struct("ValidateAuthCodeRequest")
+65            .field("grant_type", &self.grant_type)
+66            .field("app_id_hash", &"[redacted]")
+67            .field("code", &"[redacted]")
+68            .finish()
+69    }
+70}
+71
+72/// Request body for the documented validate-refresh-token endpoint.
+73#[derive(Clone, PartialEq, Eq, Serialize, Deserialize)]
+74pub struct RefreshTokenRequest {
+75    /// Grant type. Fyers documents this as `refresh_token`.
+76    pub grant_type: String,
+77    /// SHA-256 hash of `app_id:app_secret`.
+78    #[serde(rename = "appIdHash")]
+79    pub app_id_hash: String,
+80    /// Refresh token returned by auth-code validation.
+81    pub refresh_token: String,
+82    /// Fyers PIN used by the refresh-token flow.
+83    pub pin: String,
+
+----
